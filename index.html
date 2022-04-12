@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Data grid</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="wrapper">
+    <section>
+        <h2>Table Grid</h2> 
+        <section class="grid">
+            <div class="item">
+                <select id="total_views" name="total_views" onchange="grid_content(1,1,'Init')">
+                	<option value="30">30</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="500">500</option>
+                </select>
+            </div>
+        </section>        
+        <section class="grid">
+            <div class="item">
+            	<input onchange="grid_content(1,1,'Init')" placeholder="Search"  type="text" name="pesquisa" id="search_" />
+                <!--<button onclick="grid_content(1)" >Search</button>-->
+            </div>
+            <div class="item"><div class="paginate"></div></div>            
+        </section>       
+        <div class="wrapper">
+            <table id="gridCanvas" class="display dataTable no-footer" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+            <th>Excluir</th>
+            <th>Id</th>
+            <th>user</th>                       
+            </tr>
+            </thead>  
+            <tbody id="bodyCanvas">            
+            </tbody>         
+            </table>
+        </div>
+        <div class="paginate"></div>
+       </section>
+</div>
+<script src="jquery.min.js"></script>
+<script src="scripts.js"></script>
+<script src="pagination.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){	
+  	grid_content(1,1,'Init');	
+  });    
+</script>
+</body>
+</html>
