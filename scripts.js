@@ -14,27 +14,23 @@ function grid_content(page,num_rows,ctrl_page)
 		type: "POST",
 		data: {pesq: $("#search_").val(),total_views: $("#total_views").val()},
 		success: function (data) {				
+			var tbl = document.getElementById("bodyCanvas");
+			var num_regs = 	data[0]['totalregs'];
+			paginate_htm(page,num_regs,ctrl_page);
 			
-			var tbl = document.getElementById("bodyCanvas");			
-			var num_rows = data[0]['total_regs'];		
-			
-			paginate_htm(page,num_rows,ctrl_page);			
-			
-			for (var i = 1, len = data[0]['total_exec']; i <= len; i++)
+			for (var i = 1, len = num_regs; i <= len; i++)
 			{				
 				var row = document.createElement("tr");
 				row.setAttribute("id", "row-"+i);
 				tbl.appendChild(row);					
 				Object.entries(data[i]).forEach(([key_b, value_b]) => {							
-						Object.entries(value_b).forEach(([key_c, value_c]) => {	
 						var newTd = document.createElement("td");					
-						var content_td = document.createTextNode(value_c[0]);
+						var content_td = document.createTextNode(value_b);
 						newTd.appendChild(content_td);
 						var currentTr = document.getElementById("row-"+i); 
-						currentTr.appendChild(newTd);			
-					});						
+						currentTr.appendChild(newTd);									
 				});
-			}
+			}			
 		}
 	});	
 }
